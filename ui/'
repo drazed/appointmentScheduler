@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- Adding the ng-app declaration to initialize AngularJS -->
+<html ng-app="grouphealth">
+<head>
+<title>Appointment Scheduler</title>
+
+<!-- set character encoding to prevent garbled output on some browsers/locales -->
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
+<!-- Latest compiled and minified AngularJS plus ui.bootstrap dependencies -->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootsrap-csp.css">
+
+<!-- these are required for ngMaterial  dependency injection -->
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+<script src="/bower_components/angular-aria/angular-aria.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/bower_components/angular-material/angular-material.js"></script>
+
+<!-- Latest compiled and minified bootstrap css CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- grouphealth custom CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- groupheatlh custom javascript -->
+<script src="js/controllers.js"></script>
+<script src="js/api.js"></script>
+</head>
+
+<!-- on load we trigger ping, which tests our API connection and throws an alert on fail -->
+<body ng-controller="ping" ng-init="ping(); active='appointments'">
+
+<div>
+	<!-- The navigation menu will get the value of the "active" variable as a class.
+		 The $event.preventDefault() stops the page from jumping when a link is clicked. -->
+
+	<nav class="{{active}}">
+		<!-- When a link in the menu is clicked, we set the active variable -->
+		<a href="#" class="appointments" ng-click="active='appointments'">Appointments</a>
+		<a href="#" class="help" ng-click="active='help'">Help</a>
+	</nav>
+    <div ng-if="active == 'help'">
+        <p>Add appointment with <button type="button" class="btn btn-success">+</button></p>
+        <p>Remove appointments with <button type="button" class="btn btn-danger">x</button></p>
+	</div>
+    <div ng-if="active == 'appointments'" ng-controller="appointment">
+		<center>
+		<table class="table table-striped table-bordered table-hover" style="width: auto !important">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Reason</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th><button name="create_appointment" type="button" class="btn btn-success" ng-click="create($event)">+</button></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Jane Smith</td>
+					<td>Other</td>
+					<td class="date">2017-06-01</td>
+					<td class="time">15:00-16:00</td>
+					<th><button name="appointment_1" type="button" class="btn btn-danger" ng-click="destroy(1)">x</button></th>
+				</tr>
+				<tr>
+					<td>John Doe</td>
+					<td>Sick</td>
+					<td class="date">2017-06-05</td>
+					<td class="time">12:00-12:30</td>
+					<th><button type="button" class="btn btn-danger" ng-click="destroy(2)">x</button></th>
+				</tr>
+				<tr>
+					<td>Mike Melon</td>
+					<td>Checkup</td>
+					<td class="date">2017-06-05</td>
+					<td class="time">12:30-13:30</td>
+					<th><button type="button" class="btn btn-danger" ng-click="destroy(3)">x</button></th>
+				</tr>
+			</tbody>
+		</table>
+		</center>
+    </div>
+</div>
+</body>
+</html>
