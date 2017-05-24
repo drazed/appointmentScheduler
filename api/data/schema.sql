@@ -1,0 +1,14 @@
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(80),
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE appointments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER,
+  reason VARCHAR(80),
+  start_timestamp TIMESTAMP,
+  end_timestamp TIMESTAMP
+);
