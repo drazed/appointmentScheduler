@@ -1,3 +1,4 @@
+/** initialize  app module **/
 var grouphealth = angular.module('grouphealth', ['ui.bootstrap','ngMaterial']);
 
 /**
@@ -19,21 +20,35 @@ grouphealth.controller('ping', ['$scope','API', function($scope,API) {
     }
 }]);
 
-/**
- * Handle all appointment CRUD opperations
- **/
-grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($scope,$mdDialog,API) {
+/** Handle all appointment CRUD opperations **/
+grouphealth.controller('appointment', ['$scope','$mdDialog','$filter','API', function($scope,$mdDialog,$filter,API) {
+    // reason options
     $scope.reasons = [
         {name:"CheckUp",value:"CheckUp"},
         {name:"Sick",value:"Sick"},
         {name:"Other",value:"Other"},
     ];
 
-    $scope.list = function() {
-        alert('test');
+    // local function to refresh list from API, this is called to initialize but also
+    // on create/delete (which could and probably should just update locally but this
+    // is easier and ensures data is up to date
+    function updateList() {
+        // get all existing appointments
+        API.appointment().get(null)
+        .then(function (data) {
+            if (data) {
+                // update our scoped list
+                $scope.list = data;
+            } else {
+                alert("Failed to GET appointments");
+            }
+        });
     }
 
-    // create opperation uses a custom dialog form, which calls save on submit
+    // initialize list
+    updateList();
+
+    // show new appointment dialog
     $scope.create = function(ev) {
         $mdDialog.show({
             controller: DialogController,
@@ -44,6 +59,7 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($sco
         })
     };
 
+    // used by $scope.create
     $scope.showPrerenderedDialog = function(ev) {
         $mdDialog.show({
             contentElement: '#myDialog',
@@ -53,23 +69,37 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($sco
         });
     };
 
+    // used by $scope.create
     function DialogController($scope, $mdDialog, API) {
         $scope.hide = function() {
             $mdDialog.hide();
         };
 
+        // close the dialog, since it has local scope data is cleared/reset for any future open
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
 
+        // parse form data and POST new appointment to the API
         $scope.save = function(form) {
-            console.dir(form);
-            API.appointment().add(form)
+            // form contains alot of meta data and raw date/timestamps
+            // re-format just the parts we need
+            var postdata = {
+                name: form.name,
+                reason: form.reason.name,
+                date: form.appointment_date,
+                date: $filter('date')(form.appointment_date, "yyyy-MM-dd"),
+                start: $filter('date')(form.appointment_start, "HH:mm"),
+                end: $filter('date')(form.appointment_end, "HH:mm"),
+            }
+
+            API.appointment().add(postdata)
             .then(function (data) {
                 if (data) {
-                    console.log(data);
-                    alert('saved');
                     $mdDialog.hide(form);
+
+                    // on successful add, update list to show the item has been added
+                    updateList();
                 } else {
                     alert("Failed to save appointment");
                 }
@@ -77,7 +107,7 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($sco
         };
     }
 
-
+    // remove an appointment from the list
     $scope.remove = function(id) {
         // Appending dialog to document.body to cover sidenav in docs app
         var confirm = $mdDialog.confirm()
@@ -90,8 +120,9 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($sco
             API.appointment().remove(id)
             .then(function (data) {
                 if (data) {
-                    console.log(data);
-                    alert('Removed '+id);
+                    // alert('Removed '+id);
+                    // on successful delete, update list to show the item has been removed
+                    updateList();
                 } else {
                     alert("Failed to remove appointment "+id);
                 }
@@ -103,36 +134,7 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($sco
     };
 }]);
 
-
-/**
- * Basic login controller
- ** /
-grouphealth.controller('login', ['$scope','API', function($scope,API) {
-    $scope.logout = function () {
-        sessionStorage.access_token = null;
-        sessionStorage.username = null;
-        $state.go('login');
-    };
-
-    $scope.login = function (username, password) {
-        API.login(username, password)
-        .then(function (data) {
-            if (data) {
-                // set session token and go to dashboard
-                sessionStorage.access_token = data.access_token;
-                sessionStorage.username = data.username;
-                $state.go('home');
-            } else {
-                // this would be better set somewhere else, but since login
-                // isn't even part of the spec lets just make this super simple :)
-                alert('Invalid username/password');
-            }
-        });
-    };
-}
-/**/
-
-
+/** input validation bits **/
 /*
 var app = angular.module('form-example1', []);
 
