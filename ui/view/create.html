@@ -1,3 +1,4 @@
+<!-- md-dialog handles inputs for new appointment creation -->
 <md-dialog aria-label="Book Appointment" ng-app="grouphealth" ng-controller="appointment" >
   <form ng-cloak ng-submit="save(this)" novalidate>
     <md-toolbar>
@@ -11,8 +12,8 @@
           <div>
               <label>Name:</label>
             <input type="text" ng-model="name" name="name" class="pull-right" /><br />
-            <span ng-show="form.name.$pending.name">Checking if this name is available...</span>
-            <span ng-show="form.name.$error.name">This username is already taken!</span>
+            <span ng-show="form.name.$pending.name">Checking if name is valid...</span>
+            <span ng-show="form.name.$error.name">invalid name!</span>
             <!-- {{name}} -->
           </div>
           <div>
@@ -21,30 +22,30 @@
                 ng-init="reason = reasons[0]"
                 ng-options="option.name for option in reasons">
             </select>
-            <span ng-show="form.name.$pending.reason">Checking if reason is valid...</span>
-            <span ng-show="form.name.$error.reason">This reason is invalid!</span>
+            <span ng-show="form.reason.$pending.reason">Checking if reason is valid...</span>
+            <span ng-show="form.reason.$error.reason">invalid reason!</span>
             <!-- {{reason}} -->
           </div>
           <div>
             <label>Date:</label>
             <input type="date" ng-model="appointment_date" name="appointment_date" class="pull-right" /><br />
-            <span ng-show="form.name.$pending.appointment_date">Checking if this date is available...</span>
-            <span ng-show="form.name.$error.appointment_date">This date is fully booked!</span>
+            <span ng-show="form.appointment_date.$pending.appointment_date">Checking if date is valid...</span>
+            <span ng-show="form.appointment_date.$error.appointment_date">invalid date!</span>
             <!-- {{appointment_date}} -->
           </div>
           <div>
             <label>Start Time:</label>
-            <input type="time" name="appointment_start" class="pull-right"ng-model="appointment_start" placeholder="HH:mm:ss" min="08:00:00" max="16:30:00" required /><br />
-            <span ng-show="form.name.$pending.appointment_start" >Checking if this time is available...</span>
-            <span ng-show="form.name.$error.appointment_start">This time is already booked!</span>
-            <!-- {{appointment_start}} -->
+            <input type="time" ng-model="appointment_start" name="appointment_start" class="pull-right" /><br />
+            <span ng-show="form.appointment_start.$pending.appointment_start" >Checking if time is valid...</span>
+            <span ng-show="form.appointment_start.$error.appointment_start">invalid time!</span>
+            <!-- {{appointment_start | date: "HH:mm"}} -->
           </div>
           <div>
             <label>End Time:</label>
-            <input type="time" name="appointment_end" class="pull-right"ng-model="appointment_end" placeholder="HH:mm:ss" min="08:30:00" max="17:00:00" required /><br />
-            <span ng-show="form.name.$pending.appointment_end">Checking if this time is available...</span>
-            <span ng-show="form.name.$error.appointment_end">This time is already booked!</span>
-            <!-- {{appointment_end}} -->
+            <input type="time" ng-model="appointment_end" name="appointment_end" class="pull-right" /><br />
+            <span ng-show="form.appointment_end.$pending.appointment_end">Checking if time is valid...</span>
+            <span ng-show="form.appointment_end.$error.appointment_end">invalid time!</span>
+            <!-- {{appointment_end | date: "HH:mm"}} -->
           </div>
         </div>
     </md-dialog-content>
