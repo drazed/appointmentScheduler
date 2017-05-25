@@ -1,6 +1,6 @@
 <!-- md-dialog handles inputs for new appointment creation -->
 <md-dialog aria-label="Book Appointment" ng-app="grouphealth" ng-controller="appointment" >
-  <form ng-cloak ng-submit="save(this)" novalidate>
+  <form  name="form" class="css-form" ng-submit="save(this)" novalidate>
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Book Appointment</h2>
@@ -10,10 +10,10 @@
     <md-dialog-content>
         <div class="pull-left text-left">
           <div>
-              <label>Name:</label>
-            <input type="text" ng-model="name" name="name" class="pull-right" /><br />
-            <span ng-show="form.name.$pending.name">Checking if name is valid...</span>
-            <span ng-show="form.name.$error.name">invalid name!</span>
+            <label>Name:</label>
+            <input type="text" ng-model="name" name="name" class="pull-right" username /><br />
+            <span ng-show="form.name.$pending.username">Checking if name is valid...</span>
+            <span ng-show="form.name.$error.username">first and last name required</span>
             <!-- {{name}} -->
           </div>
           <div>
@@ -22,29 +22,29 @@
                 ng-init="reason = reasons[0]"
                 ng-options="option.name for option in reasons">
             </select>
-            <span ng-show="form.reason.$pending.reason">Checking if reason is valid...</span>
-            <span ng-show="form.reason.$error.reason">invalid reason!</span>
+            <!-- no need to validate this since we only provide valid dropdown entries
+                and the API will fail if an invalid-api reason is given -->
             <!-- {{reason}} -->
           </div>
           <div>
             <label>Date:</label>
-            <input type="date" ng-model="appointment_date" name="appointment_date" class="pull-right" /><br />
-            <span ng-show="form.appointment_date.$pending.appointment_date">Checking if date is valid...</span>
-            <span ng-show="form.appointment_date.$error.appointment_date">invalid date!</span>
+            <input type="date" ng-model="appointment_date" name="appointment_date" class="pull-right" datetime /><br />
+            <span ng-show="form.appointment_date.$pending.datetime">Checking if date is valid...</span>
+            <span ng-show="form.appointment_date.$error.datetime">invalid date!</span>
             <!-- {{appointment_date}} -->
           </div>
           <div>
             <label>Start Time:</label>
-            <input type="time" ng-model="appointment_start" name="appointment_start" class="pull-right" /><br />
-            <span ng-show="form.appointment_start.$pending.appointment_start" >Checking if time is valid...</span>
-            <span ng-show="form.appointment_start.$error.appointment_start">invalid time!</span>
+            <input type="time" ng-model="appointment_start" name="appointment_start" class="pull-right" datetime /><br />
+            <span ng-show="form.appointment_start.$pending.datetime" >Checking if time is valid...</span>
+            <span ng-show="form.appointment_start.$error.datetime">invalid time!</span>
             <!-- {{appointment_start | date: "HH:mm"}} -->
           </div>
           <div>
             <label>End Time:</label>
-            <input type="time" ng-model="appointment_end" name="appointment_end" class="pull-right" /><br />
-            <span ng-show="form.appointment_end.$pending.appointment_end">Checking if time is valid...</span>
-            <span ng-show="form.appointment_end.$error.appointment_end">invalid time!</span>
+            <input type="time" ng-model="appointment_end" name="appointment_end" class="pull-right" datetime /><br />
+            <span ng-show="form.appointment_end.$pending.datetime">Checking if time is valid...</span>
+            <span ng-show="form.appointment_end.$error.datetime">invalid time!</span>
             <!-- {{appointment_end | date: "HH:mm"}} -->
           </div>
         </div>

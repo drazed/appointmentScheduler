@@ -1,5 +1,9 @@
 /** initialize  app module **/
-var grouphealth = angular.module('grouphealth', ['ui.bootstrap','ngMaterial']);
+var grouphealth = angular.module('grouphealth', ['ui.bootstrap','ngMaterial'])
+    // this is required to make select/option dropdown work on android
+    .config(function( $mdGestureProvider ) {
+        $mdGestureProvider.skipClickHijack();
+});
 
 /**
  * API ping allows us to test the server connection
@@ -75,13 +79,24 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','$filter','API', fun
             $mdDialog.hide();
         };
 
-        // close the dialog, since it has local scope data is cleared/reset for any future open
+        // close the dialog, since it has local scope data
+        // is cleared/reset for any future open
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
 
         // parse form data and POST new appointment to the API
         $scope.save = function(form) {
+            if (!angular.isDefined(form.name)
+                || (!angular.isDefined(form.reason) || form.reason == null)
+                || (!angular.isDefined(form.appointment_date) || form.appointment_date == null)
+                || (!angular.isDefined(form.appointment_start) || form.appointment_start == null)
+                || (!angular.isDefined(form.appointment_end) || form.appointment_end == null)
+            ) {
+                alert("Missing required inputs");
+                return;
+            }
+
             // form contains alot of meta data and raw date/timestamps
             // re-format just the parts we need
             var postdata = {
@@ -135,61 +150,59 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','$filter','API', fun
 }]);
 
 /** input validation bits **/
-/*
-var app = angular.module('form-example1', []);
+grouphealth.directive('username', function($q, $timeout) {
+    return {
+        require: 'ngModel',
+        link: function(scope, elm, attrs, ctrl) {
+            ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty model valid
+                    return $q.resolve();
+                }
 
-var INTEGER_REGEXP = /^-?\d+$/;
-app.directive('integer', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl) {
-      ctrl.$validators.integer = function(modelValue, viewValue) {
-        if (ctrl.$isEmpty(modelValue)) {
-          // consider empty models to be valid
-          return true;
+                // use a timeout to show the user the validation is actually happening
+                var def = $q.defer();
+                $timeout(function() {
+                    // names MUST include first and last name and optionally
+                    // middle name(s), ensure at least 2 words are present
+                    if (modelValue.trim().split(/\s+/).length >= 2) {
+                        def.resolve();
+                    } else {
+                        def.reject();
+                    }
+                }, 500);
+                return def.promise;
+            };
         }
-
-        if (INTEGER_REGEXP.test(viewValue)) {
-          // it is valid
-          return true;
-        }
-
-        // it is invalid
-        return false;
-      };
-    }
-  };
+    };
 });
 
-app.directive('username', function($q, $timeout) {
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl) {
-      var usernames = ['Jim', 'John', 'Jill', 'Jackie'];
+grouphealth.directive('datetime', function($q, $timeout) {
+    return {
+        require: 'ngModel',
+        link: function(scope, elm, attrs, ctrl) {
+            ctrl.$asyncValidators.datetime = function(modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty model valid
+                    return $q.resolve();
+                }
 
-      ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+                // use a timeout to show the user the validation is actually happening
+                var def = $q.defer();
+                $timeout(function() {
+                    // date requires 'yyyy-mm-dd' and time require 'HH:mm'
+                    // but since we can extract these from any valid/full date
+                    // input we just need to test for those
 
-        if (ctrl.$isEmpty(modelValue)) {
-          // consider empty model valid
-          return $q.resolve();
+                    if ((new Date(modelValue) !== "Invalid Date")
+                        && !isNaN(new Date(modelValue))) {
+                        def.resolve();
+                    } else {
+                        def.reject();
+                    }
+                }, 500);
+                return def.promise;
+            };
         }
-
-        var def = $q.defer();
-
-        $timeout(function() {
-          // Mock a delayed response
-          if (usernames.indexOf(modelValue) === -1) {
-            // The username is available
-            def.resolve();
-          } else {
-            def.reject();
-          }
-
-        }, 2000);
-
-        return def.promise;
-      };
-    }
-  };
+    };
 });
-*/
