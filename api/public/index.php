@@ -30,7 +30,9 @@ $app->pipeDispatchMiddleware();
 
 // Routes
 $app->get('/api/ping', Middleware\Ping::class, 'api.ping');
-$app->post('/api/login', Middleware\User::class, 'api.user.post');
+
+// ignore login for now, may add later
+// $app->post('/api/login', Middleware\User::class, 'api.user.post');
 
 /** These were the default skeleton calls, we don't need them for this assignment
 $app->get('/api/user[/{id:\d+}]', Middleware\User::class, 'api.user.get');
