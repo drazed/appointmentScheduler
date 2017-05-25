@@ -36,14 +36,14 @@
 <body ng-controller="ping" ng-init="ping(); active='appointments'">
 
 <div>
-	<!-- The navigation menu will get the value of the "active" variable as a class.
-		 The $event.preventDefault() stops the page from jumping when a link is clicked. -->
-
+    <!-- nav menu -->
 	<nav class="{{active}}">
 		<!-- When a link in the menu is clicked, we set the active variable -->
 		<a href="#" class="appointments" ng-click="active='appointments'">Appointments</a>
 		<a href="#" class="help" ng-click="active='help'">Help</a>
 	</nav>
+
+    <!-- Help View -->
     <div ng-if="active == 'help'">
         <p>Add appointment with <button type="button" class="btn btn-success">+</button></p>
         <p>Remove appointments with <button type="button" class="btn btn-danger">x</button></p>
@@ -51,6 +51,8 @@
         <P>Limit 8AM to 5PM visits</p>
         <p>Minimum 30 minute visit</p>
 	</div>
+
+    <!-- Appointment List View -->
     <div ng-if="active == 'appointments'" ng-controller="appointment">
 		<center>
 		<table class="table table-striped table-bordered table-hover" style="width: auto !important">
@@ -64,27 +66,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Jane Smith</td>
-					<td>Other</td>
-					<td class="date">2017-06-01</td>
-					<td class="time">15:00-16:00</td>
-					<th><button name="appointment_1" type="button" class="btn btn-danger" ng-click="remove(1)">x</button></th>
-				</tr>
-				<tr>
-					<td>John Doe</td>
-					<td>Sick</td>
-					<td class="date">2017-06-05</td>
-					<td class="time">12:00-12:30</td>
-					<th><button type="button" class="btn btn-danger" ng-click="remove(2)">x</button></th>
-				</tr>
-				<tr>
-					<td>Mike Melon</td>
-					<td>Checkup</td>
-					<td class="date">2017-06-05</td>
-					<td class="time">12:30-13:30</td>
-					<th><button type="button" class="btn btn-danger" ng-click="remove(3)">x</button></th>
-				</tr>
+                <tr ng-repeat="appointment in list">
+                    <td>{{appointment.name}}</td>
+                    <td>{{appointment.reason}}</td>
+                    <td class="date">{{appointment.date}}</td>
+                    <td class="time">{{appointment.start}} - {{appointment.end}}</td>
+                    <td><button type="button" class="btn btn-danger" ng-click="remove(appointment.id)">x</button></td>
+                </tr>
 			</tbody>
 		</table>
 		</center>
