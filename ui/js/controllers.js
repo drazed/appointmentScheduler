@@ -1,15 +1,18 @@
 var grouphealth = angular.module('grouphealth', ['ui.bootstrap','ngMaterial']);
 
 /**
- * API ping allows us to test the server connection if needed
+ * API ping allows us to test the server connection
+ * this is called on init to ensure proper server configuration
  **/
 grouphealth.controller('ping', ['$scope','API', function($scope,API) {
     $scope.ping = function() {
         API.ping()
         .then(function (data) {
             if (data) {
+                // api connection established, log the acknolegment
                 console.log(data);
             } else {
+                // unable to connect to api, likely server missconfiguration issue
                 alert("API Connection Failed");
             }
         });
@@ -93,6 +96,9 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','API', function($sco
                     alert("Failed to remove appointment "+id);
                 }
             });
+        }, function() {
+            // we don't actually have to do anything on cancel (the dialog closes itself
+            // but not having this callback causes a warning in debuggers
         });
     };
 }]);
