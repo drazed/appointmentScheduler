@@ -43,9 +43,6 @@ class Appointment
      */
     public function addAppointment(array $data)
     {
-        if (isset($data['password'])) {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        }
         $rows = $this->table->insert($data);
         return ($rows === 1) ? $this->table->lastInsertValue : false;
     }

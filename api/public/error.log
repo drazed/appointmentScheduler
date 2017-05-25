@@ -1,0 +1,70 @@
+[25-May-2017 01:51:33 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:54:30 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:29 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:31 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:36 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:38 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:40 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:52 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:54 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269
+[25-May-2017 01:55:55 UTC] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to Zend\Stdlib\ArrayUtils::merge() must be of the type array, integer given, called in /home/grouphealth/api/config/config.php on line 24 and defined in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php:269
+Stack trace:
+#0 /home/grouphealth/api/config/config.php(24): Zend\Stdlib\ArrayUtils::merge(Array, 1)
+#1 /home/grouphealth/api/config/container.php(7): require('/home/groupheal...')
+#2 /home/grouphealth/api/public/index.php(21): require('/home/groupheal...')
+#3 {main}
+  thrown in /home/grouphealth/api/vendor/zendframework/zend-stdlib/src/ArrayUtils.php on line 269

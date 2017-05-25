@@ -7,8 +7,9 @@ CREATE TABLE users (
 
 CREATE TABLE appointments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user_id INTEGER,
+  name VARCHAR(80),
   reason VARCHAR(80),
-  start_timestamp TIMESTAMP,
-  end_timestamp TIMESTAMP
+  date DATE,
+  start TIMESTAMP,
+  end TIMESTAMP
 );
