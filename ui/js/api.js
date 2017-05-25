@@ -29,10 +29,14 @@ function API($http) {
                 get : function (appointment_id) {
                     // id can be null to fetch list, but should
                     // just exclude id rather then send null
-                    if (!appointment_id) { appointment_id = ""; }
+                    var url = apiurl + '/appointment';
+                    if (appointment_id) {
+                        url = url + "/" + appointment_id
+                        return $http.get (apiurl + '/appointment/'+appointment_id)
+                    }
 
                     // return ALL appointments
-                    return $http.get (apiurl + '/appointment/'+appointment_id)
+                    return $http.get (url)
                     .then(function (response) {
                         return response.data.appointments;
                     },
@@ -41,14 +45,8 @@ function API($http) {
                     });
                 },
 
-                add : function (appointment_id, reason, date, start, end) {
-                    data = { };
-                    data.id = appointment_id;
-                    data.reason = reason;
-                    data.date = date;
-                    data.start = start;
-                    data.end = end;
-                    return $http.post (apiurl + '/appointment/', data, {
+                add : function (data) {
+                    return $http.post (apiurl + '/appointment', data, {
                         headers : {
                             'Authorization' : 'token ' + sessionStorage.access_token
                         }
@@ -60,13 +58,8 @@ function API($http) {
                         return false;
                     });
                 },
-                put : function (appointment_id, reason, date, start, end) {
-                    data = { };
-                    data.reason = reason;
-                    data.date = date;
-                    data.start = start;
-                    data.end = end;
-                    return $http.put (apiurl + '/appointment/'+appointment_id, data, {
+                update : function (appointment_id, data) {
+                    return $http.patch (apiurl + '/appointment/'+appointment_id, data, {
                         headers : {
                             'Authorization' : 'token ' + sessionStorage.access_token
                         }
@@ -81,7 +74,7 @@ function API($http) {
                 remove : function (appointment_id) {
                     return $http.delete (apiurl + '/appointment/'+appointment_id)
                     .then(function (response) {
-                        return response.data;
+                        return true;
                     }, function (error) {
                         return false;
                     });
