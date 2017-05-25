@@ -1,0 +1,7 @@
+# vim ignores
+*~
+*.swp
+*.swo
+
+# ignore test output
+tests/_output/*
