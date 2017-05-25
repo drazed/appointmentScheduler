@@ -3,5 +3,8 @@
 *.swp
 *.swo
 
+# sql-lite database shouldn't update to git, though the default/original is stored there
+api/data/grouphealth.sqlite3
+
 # ignore test output
 tests/_output/*
