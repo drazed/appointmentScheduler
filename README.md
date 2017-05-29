@@ -7,6 +7,11 @@ api/
   Uses Zend Expressive micro framework  
   Uses REST skeleton framework from:  
     https://github.com/ezimuel/zend-expressive-api  
+
+api/test/  
+  A sample PHPUnit test of the Appointment middleware object
+  Trigger from /api/ with:
+    php tests/phpuit.phar tests/AppointmentTest
   
 ui/  
   Uses AngularJS with ngMaterial and ui.bootstrap  
@@ -14,8 +19,6 @@ ui/
 conf/  
   Included sample apache vhost conf pointing domain at UI and vhost-alias domain/api  
   
-test/  
-  Uses phpunit TODO  
   
 INSTALL:  
   git clone https://github.com/drazed/grouphealth.git ./grouphealth  

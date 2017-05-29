@@ -102,7 +102,6 @@ grouphealth.controller('appointment', ['$scope','$mdDialog','$filter','API', fun
             var postdata = {
                 name: form.name,
                 reason: form.reason.name,
-                date: form.appointment_date,
                 date: $filter('date')(form.appointment_date, "yyyy-MM-dd"),
                 start: $filter('date')(form.appointment_start, "HH:mm"),
                 end: $filter('date')(form.appointment_end, "HH:mm"),
